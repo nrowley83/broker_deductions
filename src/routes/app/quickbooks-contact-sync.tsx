@@ -255,20 +255,20 @@ function PayerCard({
   return (
     <>
       <div className="d-flex align-items-start gap-3 py-3 border-bottom">
-        <div className="d-flex flex-column align-items-center gap-1 flex-shrink-0">
-          <div
-            className="d-flex align-items-center justify-content-center rounded-circle bg-secondary-subtle text-secondary fw-semibold"
-            style={{ width: 34, height: 34, fontSize: 12 }}
-          >
-            {initials}
-          </div>
-          {showQB && (
-            <QBIcon connected={qbConnected} onClick={() => !qbConnected && setModalOpen(true)} />
-          )}
+        <div
+          className="d-flex align-items-center justify-content-center rounded-circle bg-secondary-subtle text-secondary fw-semibold flex-shrink-0"
+          style={{ width: 34, height: 34, fontSize: 12 }}
+        >
+          {initials}
         </div>
         <div className="flex-grow-1" style={{ fontSize: 13 }}>
           <div className="text-muted mb-1" style={{ fontSize: 11 }}>{type}</div>
-          <div className="text-primary fw-medium">{name}</div>
+          <div className="d-flex align-items-center gap-2">
+            <span className="text-primary fw-medium">{name}</span>
+            {showQB && (
+              <QBIcon connected={qbConnected} onClick={() => !qbConnected && setModalOpen(true)} />
+            )}
+          </div>
           {email && <div className="text-primary">{email}</div>}
           {phone && <div className="text-body">{phone}</div>}
         </div>
