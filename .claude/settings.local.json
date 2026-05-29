@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:buildoutinc.github.io)",
+      "Bash(bun --bun run build)",
+      "mcp__Claude_in_Chrome__computer",
+      "mcp__Claude_in_Chrome__javascript_tool",
+      "Skill(claude-api)",
+      "Skill(claude-api:*)",
+      "Bash(bun add *)",
+      "Bash(printenv ANTHROPIC_API_KEY)",
+      "Bash(node -e \"import\\('@tanstack/react-start'\\).then\\(m => console.log\\(Object.keys\\(m\\).filter\\(k => k.includes\\('Server'\\)\\)\\)\\)\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('exports', {}\\), indent=2\\)\\)\")"
+    ]
+  }
+}
