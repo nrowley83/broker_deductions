@@ -357,7 +357,7 @@ function AssignUsersModal({
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 function CompanySettingsPage() {
-  const [activeSection, setActiveSection] = useState("company");
+  const [activeSection, setActiveSection] = useState("back-office");
   const [openModalFor, setOpenModalFor] = useState<string | null>(null);
   const [assignments, setAssignments] = useState<Record<string, UserAssignment[]>>({
     Referrals: [],
