@@ -14,32 +14,35 @@ import {
   NavbarGroupMenu,
   NavbarGroupMenuItem,
 } from "@buildoutinc/blueprint-react/ui/Navbar";
-import { Badge } from "@buildoutinc/blueprint-react/ui/Badge";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverBody,
+} from "@buildoutinc/blueprint-react/ui/Popover";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDiamonds4 } from "@fortawesome/pro-regular-svg-icons";
-import { faHandshake } from "@fortawesome/pro-regular-svg-icons";
-import { faBullhorn } from "@fortawesome/pro-regular-svg-icons";
-import { faCalculator } from "@fortawesome/pro-regular-svg-icons";
-import { faSignal } from "@fortawesome/pro-regular-svg-icons";
+import {
+  faDiamonds4,
+  faHandshake,
+  faBullhorn,
+  faCalculator,
+  faSignal,
+  faChevronDown,
+  faUser,
+  faBriefcase,
+  faGrid2,
+  faPaintbrushPencil,
+  faMagnifyingGlassLocation,
+  faCookie,
+  faArrowRightFromBracket,
+} from "@fortawesome/pro-regular-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import BuildoutLogo from "#/features/assets/buildout-logo";
 
-type NavDropdownItem = {
-  label: string;
-  href: string;
-};
-
+type NavDropdownItem = { label: string; href: string };
 type NavItem =
-  | {
-      label: string;
-      icon: IconDefinition;
-      href: string;
-    }
-  | {
-      label: string;
-      icon: IconDefinition;
-      items: NavDropdownItem[];
-    };
+  | { label: string; icon: IconDefinition; href: string }
+  | { label: string; icon: IconDefinition; items: NavDropdownItem[] };
 
 const navItems: NavItem[] = [
   {
@@ -81,12 +84,62 @@ const navItems: NavItem[] = [
       { label: "My Receivables", href: "/backoffice/receivables" },
     ],
   },
-  {
-    label: "Reports",
-    icon: faSignal,
-    href: "/app/reports",
-  },
+  { label: "Reports", icon: faSignal, href: "/app/reports" },
 ];
+
+type UserMenuItem = {
+  label: string;
+  icon: IconDefinition;
+  href?: string;
+};
+
+const userMenuItems: UserMenuItem[] = [
+  { label: "Profile", icon: faUser },
+  { label: "Company", icon: faBriefcase, href: "/app/company" },
+  { label: "Grids", icon: faGrid2 },
+  { label: "Branding", icon: faPaintbrushPencil },
+  { label: "Prospect by Buildout", icon: faMagnifyingGlassLocation },
+  { label: "Cookie Settings", icon: faCookie },
+  { label: "Logout", icon: faArrowRightFromBracket },
+];
+
+function UserMenu() {
+  return (
+    <Popover>
+      <PopoverTrigger
+        render={
+          <button className="btn btn-link p-0 border-0 d-flex align-items-center gap-2 text-white text-decoration-none" />
+        }
+      >
+        <div
+          className="d-flex align-items-center justify-content-center rounded-circle bg-secondary-subtle text-secondary fw-semibold flex-shrink-0"
+          style={{ width: 32, height: 32, fontSize: 13 }}
+        >
+          NR
+        </div>
+        <span className="fw-medium" style={{ fontSize: 14 }}>Nick Rowley</span>
+        <FontAwesomeIcon icon={faChevronDown} style={{ fontSize: 11 }} />
+      </PopoverTrigger>
+      <PopoverContent side="bottom" align="end" sideOffset={8}>
+        <PopoverBody className="p-1" style={{ minWidth: 220 }}>
+          {userMenuItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href ?? "#"}
+              className="d-flex align-items-center gap-3 px-3 py-2 rounded text-body text-decoration-none"
+              style={{ fontSize: 14 }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bs-light)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "")}
+            >
+              <FontAwesomeIcon icon={item.icon} style={{ width: 16, color: "var(--bs-secondary)" }} />
+              {item.label}
+            </a>
+          ))}
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  );
+}
 
 export default function AppNavbar() {
   return (
@@ -108,10 +161,7 @@ export default function AppNavbar() {
                 </NavbarGroupTrigger>
                 <NavbarGroupMenu>
                   {item.items.map((sub) => (
-                    <NavbarGroupMenuItem
-                      key={sub.href}
-                      render={<a href={sub.href} />}
-                    >
+                    <NavbarGroupMenuItem key={sub.href} render={<a href={sub.href} />}>
                       {sub.label}
                     </NavbarGroupMenuItem>
                   ))}
@@ -130,10 +180,8 @@ export default function AppNavbar() {
           )}
         </NavbarNav>
       </NavbarContent>
-      <NavbarFooter>
-        <Badge variant="secondary" appearance="accent">
-          Prototype
-        </Badge>
+      <NavbarFooter className="d-flex align-items-center gap-3">
+        <UserMenu />
       </NavbarFooter>
     </Navbar>
   );
