@@ -145,6 +145,7 @@ const DEDUCTION_CATEGORIES = [
 ];
 
 const ALL_USERS = [
+  "Brian Reynolds",
   "May Broker",
   "Luke Meyer",
   "Luke Meyer",
@@ -211,10 +212,10 @@ function AssignUsersModal({
   return (
     <Modal open={open} onOpenChange={handleOpen}>
       <ModalContent size="xl" centered>
-        <ModalHeader className="d-flex align-items-center justify-content-between">
-          <ModalTitle>Assign Users</ModalTitle>
-          <ModalClose render={<button className="btn btn-link p-0 text-muted border-0" />}>
-            <FontAwesomeIcon icon={faXmark} style={{ fontSize: 18 }} />
+        <ModalHeader className="d-flex align-items-center justify-content-between border-0 pb-0">
+          <ModalTitle style={{ fontSize: 22, fontWeight: 700 }}>Assign Users</ModalTitle>
+          <ModalClose render={<button className="btn btn-link p-0 text-dark border-0" style={{ fontSize: 20, lineHeight: 1 }} />}>
+            <FontAwesomeIcon icon={faXmark} />
           </ModalClose>
         </ModalHeader>
 
@@ -224,7 +225,7 @@ function AssignUsersModal({
             <div className="col-5">
               <div className="border rounded h-100 p-3 d-flex flex-column">
                 <div className="d-flex align-items-center justify-content-between mb-3">
-                  <span className="fw-semibold" style={{ fontSize: 15 }}>Available Users</span>
+                  <span className="fw-semibold" style={{ fontSize: 18 }}>Available Users</span>
                   <button
                     className="btn btn-link btn-sm p-0 text-primary text-decoration-none"
                     style={{ fontSize: 13 }}
@@ -272,7 +273,7 @@ function AssignUsersModal({
             <div className="col-7">
               <div className="border rounded h-100 p-3 d-flex flex-column">
                 <div className="d-flex align-items-center justify-content-between mb-3">
-                  <span className="fw-semibold" style={{ fontSize: 15 }}>Selected Users</span>
+                  <span className="fw-semibold" style={{ fontSize: 18 }}>Selected Users</span>
                   <button
                     className="btn btn-link btn-sm p-0 text-primary text-decoration-none"
                     style={{ fontSize: 13 }}
